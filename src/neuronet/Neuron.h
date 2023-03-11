@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <exception>
 #include <vector>
+#include <cmath>
 #include <memory>
 #include <iostream>
 #include <cmath>
@@ -20,7 +21,7 @@ namespace neuronet {
     static int ID = 0;
 
     struct Neuron {
-        constexpr static float LEARNING_RATE = 0.50f;
+        constexpr static float LEARNING_RATE = 0.25f;
     public:
         //Default constructor
         explicit Neuron();

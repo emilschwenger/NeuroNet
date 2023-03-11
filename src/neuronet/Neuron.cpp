@@ -10,7 +10,10 @@ namespace neuronet {
             float new_value_in = 0;
             for(const std::shared_ptr<NeuronEdge>& edge : edges) {
                 new_value_in += ( edge->getFrom()->getValueOut() * edge->getWeight() );
+                //std::cout << "From value out " << edge->getFrom()->getValueOut() << std::endl;
+                //std::cout << "Edge weight " <<  edge->getWeight() << std::endl;
             }
+            //std::cout << "Weighted sum result " << new_value_in << std::endl;
             return new_value_in;
         };
         activation_function_derivative = [&] (float value) {
@@ -24,7 +27,7 @@ namespace neuronet {
             return new_value_in;
         };
         activation_function = [] (float weighted_sum) {
-            return 1.0 / (1 + pow(M_E, (-1) * weighted_sum));
+            return 1.0 / (1.0 + exp( (-1) * weighted_sum));
         };
     };
 
@@ -52,7 +55,7 @@ namespace neuronet {
     }
     void Neuron::setError(float error_) {
         error = error_;
-        std::cout << "Set error at neuron " << getID() << "  to " << error_ << std::endl;
+        //std::cout << "Set error at neuron " << getID() << "  to " << error_ << std::endl;
     }
     float Neuron::getError() const {
         return error;

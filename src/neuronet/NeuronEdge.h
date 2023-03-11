@@ -2,6 +2,7 @@
 //Standard Library
 #include <array>
 #include <memory>
+#include <stdlib.h>
 //User defined
 #include "Neuron.h"
 
@@ -11,7 +12,6 @@ namespace neuronet {
     struct Neuron;
 
     struct NeuronEdge : public std::enable_shared_from_this<NeuronEdge> {
-        constexpr static float DEFAULT_EDGE_WEIGHT = 0.5f;
     public:
         explicit NeuronEdge(std::shared_ptr<Neuron> from, std::shared_ptr<Neuron> to);
         float getWeight() const;
@@ -25,6 +25,6 @@ namespace neuronet {
     private:
         std::shared_ptr<Neuron> from_;
         std::shared_ptr<Neuron> to_;
-        float weight_ = DEFAULT_EDGE_WEIGHT;
+        float weight_ = (float) rand()/RAND_MAX;
     };
 }

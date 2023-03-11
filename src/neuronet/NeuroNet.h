@@ -29,16 +29,23 @@ namespace neuronet {
     using TrainingData = std::vector<TrainingSet>;
 
     struct NeuroNet {
+
         //Constructor
         explicit NeuroNet(InputLayer& input_layer_, std::vector<HiddenLayer>& hidden_layers_, OuptutLayer& ouput_layer_, TrainingData training_data_);
         //Mesh the different layers int the neuronal net
         void mesh();
         //Eveluates the network with a given input vector that has the same size as input_layer
         void evaluate(const InputData&);
+        OutputData evaluate_return(const InputData&);
         //start trainging with data
         void train_net(const TrainingData&);
+        //start trainging with data
+        void train_net_convergence(const TrainingData&);
         //export graph to file for https://graphonline.ru/en/create_graph_by_edge_list
         void export_graph_to_file(std::string path);
+        //Net precision getter/setter
+        void setMinNetPrecision(float precision);
+        float getMinNetPrecision() const;
     private:
         //Mesh the input layer with the first hidden layer
         void mesh_input_layer();
@@ -52,13 +59,19 @@ namespace neuronet {
         void evaluate_and_propagate_error_calculation(const TrainingSet&);
         //Change weights
         void propagate_weight_change();
+        /*
+        * Calculates mean squared error of the ouput layer
+        */
+        float calculate_mean_squared_error();
     private:
         InputLayerP input_layer;
         std::vector<HiddenLayerP> hidden_layer;
-        OuptutLayerP ouput_layer;
+        OuptutLayerP output_layer;
         //stores the bias for each layer
         std::vector<std::shared_ptr<float>> layer_bias;
         //Training data
         TrainingData training_data;
+        //Net precision
+        float MIN_NET_PRECISION = 0.00005f;
     };
 }

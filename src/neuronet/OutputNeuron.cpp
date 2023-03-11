@@ -14,23 +14,23 @@ namespace neuronet {
         float new_value_in = weighted_sum_function(getIncomingEdges());
         setValueIn(new_value_in + getBias());
         setValueOut(activation_function(new_value_in));
-        std::cout << "Current output neuron value: " << this->getValueOut() << std::endl;
+        //std::cout << "OutputFired " << getID() << "    -     " << getValueOut() << std::endl;
     }
     float OutputNeuron::getExpected() const {
         return expected_output;
     }
     void OutputNeuron::setExpected(float expected) {
         expected_output = expected;
-        std::cout << "Set expected at neuron " << getID() << "  to " << expected << std::endl;
+        //std::cout << "Set expected at neuron " << getID() << "  to " << expected << std::endl;
     }
     void OutputNeuron::calc_error() {
-        float new_error = (getValueOut() - getExpected()) * activation_function_derivative(getValueIn());
+        float new_error = (getExpected() - getValueOut()) * activation_function_derivative(getValueIn());
         setError(new_error);
     }
     void OutputNeuron::calc_and_add_delta_weight() {
         for(std::shared_ptr<NeuronEdge>& edge : getIncomingEdges()) {
-            float delta_weight = (-1) * LEARNING_RATE * getError() * edge->getFrom()->getValueOut();
-            std::cout << "Add to output weight " << delta_weight << std::endl;
+            float delta_weight = LEARNING_RATE * getError() * edge->getFrom()->getValueOut();
+            //std::cout << "Add to output weight " << delta_weight << std::endl;
             edge->addToWeight(delta_weight);
         }
     }
