@@ -21,5 +21,12 @@ namespace neuronet {
         //Shared pointer generator
         std::shared_ptr<OutputNeuron> getShared();
         void fire() override;
+        void calc_error() override;
+        void calc_and_add_delta_weight() override;
+        //Expected setter/getter
+        float getExpected() const;
+        void setExpected(float expected);
+    private:
+        float expected_output;
     };
 }

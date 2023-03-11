@@ -16,6 +16,7 @@ namespace neuronet {
         explicit NeuronEdge(std::shared_ptr<Neuron> from, std::shared_ptr<Neuron> to);
         float getWeight() const;
         void setWeight(float weight);
+        void addToWeight(float weight_delta);
         //Get pointer from/to
         std::shared_ptr<Neuron> getFrom();
         std::shared_ptr<Neuron> getTo();

@@ -17,5 +17,7 @@ namespace neuronet {
         //Shared pointer generator
         std::shared_ptr<HiddenNeuron> getShared();
         void fire() override;
+        void calc_error() override;
+        void calc_and_add_delta_weight() override;
     };
 }

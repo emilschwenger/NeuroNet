@@ -9,6 +9,9 @@ namespace neuronet {
     void NeuronEdge::setWeight(float weight) {
         weight_ = weight; 
     }
+    void NeuronEdge::addToWeight(float weight_delta) {
+        weight_ += weight_delta;
+    }
     std::shared_ptr<NeuronEdge> NeuronEdge::getShared() {
         return shared_from_this();
     }
