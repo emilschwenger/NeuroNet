@@ -27,3 +27,9 @@ network.train_net_convergence();
 ```
 OutputData output_vector = network.evaluate_return(input_data);
 ```
+
+### Export the network and display it graphically
+> https://graphonline.ru/en/create_graph_by_edge_list
+```
+network.export_graph_to_file("path.txt");
+```
