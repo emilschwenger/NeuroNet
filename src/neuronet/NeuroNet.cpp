@@ -201,14 +201,14 @@ namespace neuronet {
         }
     }
 
-    void NeuroNet::train_net(const TrainingData& data) {
-        for(const TrainingSet& set : data) {
+    void NeuroNet::train_net() {
+        for(const TrainingSet& set : training_data) {
             evaluate_and_propagate_error_calculation(set);
             propagate_weight_change();
         }
     }
 
-    void NeuroNet::train_net_convergence(const TrainingData& data) {
+    void NeuroNet::train_net_convergence() {
 
         float min_error = __FLT_MAX__;
         std::cout << calculate_mean_squared_error() << std::endl;
@@ -216,7 +216,7 @@ namespace neuronet {
         float current_error = __FLT_MAX__;
         do{
             //Train network
-            train_net(data);
+            train_net();
             if(current_error < min_error) {
                 min_error = current_error;
                 std::cout << "Increased precision, error=" << min_error << std::endl;

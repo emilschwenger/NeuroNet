@@ -37,10 +37,10 @@ namespace neuronet {
         //Eveluates the network with a given input vector that has the same size as input_layer
         void evaluate(const InputData&);
         OutputData evaluate_return(const InputData&);
-        //start trainging with data
-        void train_net(const TrainingData&);
-        //start trainging with data
-        void train_net_convergence(const TrainingData&);
+        //start trainging with training_data
+        void train_net();
+        //start trainging with training_data
+        void train_net_convergence();
         //export graph to file for https://graphonline.ru/en/create_graph_by_edge_list
         void export_graph_to_file(std::string path);
         //Net precision getter/setter

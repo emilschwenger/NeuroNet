@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
     network.setMinNetPrecision(0.00000000005);
 
     //Evaluate the network
-    network.train_net_convergence(td);
+    network.train_net_convergence();
 
     //network.export_graph_to_file("");
     std::cout << "Training Result" << std::endl;
