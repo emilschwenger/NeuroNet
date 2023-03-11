@@ -21,7 +21,7 @@ network.setMinNetPrecision(0.000005);
 ```
 #### Train untill convergence
 ```
-network.train_net_convergence(td);
+network.train_net_convergence();
 ```
 ### Evaluate network with input data
 ```
